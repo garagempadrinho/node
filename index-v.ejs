@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Garagem Acadêmica</title>
-  <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Garagem Acadêmica</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
-  <h1>🚗 Garagem Acadêmica</h1>
-  <nav>
-    <a href="/">🚗 Carros</a> | 
-    <a href="/clientes">👥 Clientes</a> | 
-    <a href="/vendas">💰 Vendas</a>
-  </nav>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Modelo</th>
-        <th>Preço (R$)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% carros.forEach(carro => { %>
-        <tr>
-          <td><%= carro.id_carro %></td>
-          <td><%= carro.modelo %></td>
-          <td><%= Number(carro.preco).toFixed(2) %></td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
-  <h2>Adicionar Carro</h2>
-<form action="/add" method="POST">
-  <label>Modelo:</label>
-  <input type="text" name="modelo" required>
-  
-  <label>Preço:</label>
-  <input type="number" step="0.01" name="preco" required>
-  
-  <button type="submit">Adicionar</button>
-</form>
+    <h1>🚗 Garagem Acadêmica</h1>
+    <nav>
+        <a href="/">🚗 Carros</a> |
+        <a href="/clientes">👥 Clientes</a> |
+        <a href="/vendas">💰 Vendas</a>
+    </nav>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th>Preço (R$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% carros.forEach(carro=> { %>
+                <tr>
+                    <td>
+                        <%= carro.id_carro %>
+                    </td>
+                    <td>
+                        <%= carro.modelo %>
+                    </td>
+                    <td>
+                        <%= Number(carro.preco).toFixed(2) %>
+                    </td>
+                    <td>
+                        <a href="/editar/<%= carro.id_carro %>">✏️ Editar</a>
+                        <a href="/deletar/<%= carro.id_carro %>"
+                            onclick="return confirm('Tem certeza que deseja excluir este carro?')">🗑️ Deletar</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <h2>Adicionar Carro</h2>
+    <form action="/add" method="POST">
+        <label>Modelo:</label>
+        <input type="text" name="modelo" required>
+
+        <label>Preço:</label>
+        <input type="number" step="0.01" name="preco" required>
+
+        <button type="submit">Adicionar</button>
+    </form>
+
 </body>
+
 </html>
