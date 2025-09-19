@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Clientes</title>
-  <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
-  <h1>👥 Lista de Clientes</h1>
-  <nav>
-    <a href="/">🚗 Carros</a> | 
-    <a href="/clientes">👥 Clientes</a> | 
-    <a href="/vendas">💰 Vendas</a>
-  </nav>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Telefone</th>
-        <th>Carro</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% clientes.forEach(c => { %>
-        <tr>
-          <td><%= c.id_cliente %></td>
-          <td><%= c.nome %></td>
-          <td><%= c.telefone %></td>
-          <td><%= c.modelo %></td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
-  <h2>Adicionar Cliente</h2>
-<form action="/clientes/add" method="POST">
-  <label>Nome:</label>
-  <input type="text" name="nome" required>
+    <h1>👥 Lista de Clientes</h1>
+    <nav>
+        <a href="/">🚗 Carros</a> |
+        <a href="/clientes">👥 Clientes</a> |
+        <a href="/vendas">💰 Vendas</a>
+    </nav>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Carro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% clientes.forEach(cliente=> { %>
+                <tr>
+                    <td>
+                        <%= cliente.id_cliente %>
+                    </td>
+                    <td>
+                        <%= cliente.nome %>
+                    </td>
+                    <td>
+                        <%= cliente.telefone %>
+                    </td>
+                    <td>
+                        <%= cliente.modelo %>
+                    </td>
+                    <td>
+                        <a href="/clientes/editar/<%= cliente.id_cliente %>">✏️ Editar</a>
+                        <a href="/clientes/deletar/<%= cliente.id_cliente %>"
+                            onclick="return confirm('Tem certeza que deseja excluir este cliente?')">🗑️ Deletar</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <h2>Adicionar Cliente</h2>
+    <form action="/clientes/add" method="POST">
+        <label>Nome:</label>
+        <input type="text" name="nome" required>
 
-  <label>Telefone:</label>
-  <input type="text" name="telefone" required>
+        <label>Telefone:</label>
+        <input type="text" name="telefone" required>
 
-  <label>Carro:</label>
-  <select name="id_carro" required>
-    <% carros.forEach(carro => { %>
-      <option value="<%= carro.id_carro %>"><%= carro.modelo %></option>
-    <% }) %>
-  </select>
-  
+        <label>Carro:</label>
+        <select name="id_carro" required>
+            <% carros.forEach(carro=> { %>
+                <option value="<%= carro.id_carro %>">
+                    <%= carro.modelo %>
+                </option>
+                <% }) %>
+        </select>
 
-  <button type="submit">Adicionar Cliente</button>
-</form>
+
+        <button type="submit">Adicionar Cliente</button>
+    </form>
 
 </body>
+
 </html>
