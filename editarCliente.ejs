@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cliente</title>
+</head>
+
+<body>
+    <h2>Editar Cliente</h2>
+    <form action="/clientes/editar/<%= cliente.id_cliente %>" method="POST">
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<%= cliente.nome %>" required><br>
+
+        <label>Telefone:</label>
+        <input type="text" name="telefone" value="<%= cliente.telefone %>" required><br>
+
+        <label>Carro:</label>
+        <select name="id_carro">
+            <% carros.forEach(carro=> { %>
+                <option value="<%= carro.id_carro %>" <%=carro.id_carro===cliente.id_carro ? "selected" : "" %>>
+                    <%= carro.modelo %>
+                </option>
+                <% }) %>
+        </select><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+
+</html>
